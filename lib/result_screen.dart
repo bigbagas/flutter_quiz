@@ -25,6 +25,13 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final summaryData = getSummaryData();
+    final numTotalQuestion = questions.length;
+    final numCorrectQuestion = summaryData
+        .where(
+          (element) => element['correct_answer'] == element['answer'],
+        )
+        .length;
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -33,17 +40,19 @@ class ResultScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text('Benar'),
+            Text(
+              'You answered $numCorrectQuestion out of $numTotalQuestion queastiona correctly!',
+            ),
             const SizedBox(
               height: 20,
             ),
-            QuestionSummary(getSummaryData()),
+            QuestionSummary(summaryData),
             const SizedBox(
               height: 20,
             ),
             ElevatedButton(
               onPressed: () {},
-              child: const Text("BAGAS"),
+              child: const Text("Restart Quiz"),
             ),
           ],
         ),
