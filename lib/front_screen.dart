@@ -45,7 +45,8 @@ class FrontScreen extends StatelessWidget {
           OutlinedButton.icon(
             onPressed: startQuiz,
             style: OutlinedButton.styleFrom(
-                backgroundColor: Colors.red, foregroundColor: Colors.white),
+                backgroundColor: Color.fromARGB(255, 143, 26, 163),
+                foregroundColor: Colors.white),
             icon: const Icon(Icons.arrow_right_alt),
             label: const Text("Start Quiz"),
           )

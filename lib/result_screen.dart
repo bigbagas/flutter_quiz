@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quiz/data/question_data.dart';
 import 'package:flutter_quiz/question_summary.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key, required this.resultAnswer});
+  const ResultScreen({
+    super.key,
+    required this.resultAnswer,
+    required this.onRestart,
+  });
 
   final List<String> resultAnswer;
+  final void Function() onRestart;
 
   List<Map<String, Object>> getSummaryData() {
     final List<Map<String, Object>> summary = [];
@@ -41,7 +47,9 @@ class ResultScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'You answered $numCorrectQuestion out of $numTotalQuestion queastiona correctly!',
+              'You answered $numCorrectQuestion out of $numTotalQuestion questions correctly!',
+              style: GoogleFonts.lato(color: Colors.white, fontSize: 20),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(
               height: 20,
@@ -50,9 +58,13 @@ class ResultScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text("Restart Quiz"),
+            OutlinedButton.icon(
+              onPressed: onRestart,
+              style: OutlinedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 73, 6, 85),
+                  foregroundColor: Colors.white),
+              icon: const Icon(Icons.refresh),
+              label: const Text('Restart Quiz'),
             ),
           ],
         ),
